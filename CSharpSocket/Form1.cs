@@ -76,7 +76,7 @@ namespace CSharpSocket
         {
             //服务器侦听端口可以预先指定,这里使用最大端口值
             //Any表示服务器应侦听所有网络接口上的客户活动
-            IPP = new IPEndPoint(IPAddress.Any, 65535);
+            IPP = new IPEndPoint(IPAddress.Any, 65535);//创建主机对象
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Bind(IPP);//绑定节点
             socket.Listen(0);//0表示连接数量不限
@@ -131,3 +131,13 @@ namespace CSharpSocket
         }
     }
 }
+//TCP是一种面向连接的协议,利用TCP传输数据时需要先使用低级通信协议IP在计算机之间建立连接握手,才可以传输数据
+//网络中的设备为了能够彼此通信首先需要知晓本地设备或远程设备的主机对象,包括主机名和端口号
+//主机名或IP地址使得当前设备可以被外部设备访问到,当一个外部设备请求连接时,设备就将一个空余的端口号分配给该设备,并监听数据传输
+//端口号是硬件的抽象,将设备视为多个连接点,每个连接点被分配一个端口号
+//端口号是一个32位无符号整数,范围是0到65535,0到1023系统使用,1024到49151是用户程序可以使用的端口
+//IP地址和端口可以确定具体的主机对象,System.Net命名空间中的IPEndPoint类表示IP地址和端口号
+//Socket是套接字,它是引用网络连接的特殊的文件描述符,由三个基本要素组成
+//1.AddressFamily网络类型
+//2.SocketType传输数据类型
+//3.ProtocolType网络协议
